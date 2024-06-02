@@ -10,7 +10,7 @@
           <div class="row align-items-center">
             <div class="col-lg-5 mx-auto">
               <div class="feature-car-rent-box-1">
-                <h3>Range Rover S7</h3>
+                <h3>Angkot bajaj S7</h3>
                 <ul class="list-unstyled">
                   <li>
                     <span>Doors</span>
