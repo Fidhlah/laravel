@@ -56,7 +56,8 @@
                     <h3 class="m-0">Begin your trip here</h3>
                   </div>
                   <div class="col-md-6 text-md-right">
-                    <span class="text-primary">{{$availableCarsCount}}</span> <span>cars available</span></span>
+                    <span class="text-primary">0</span> <span>cars available</span></span>
+                    {{-- <span class="text-primary">{{$availableCarsCount}}</span> <span>cars available</span></span> --}}
                   </div>
                 </div>
                 <div class="row">

@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Frontend\CarController;
+use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\DriverController;
+use App\Http\Controllers\Frontend\HomepageController;
+use App\Http\Controllers\Frontend\ServiceController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,13 +18,28 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/',[HomepageController:: class, 'index' ])->name('homepage');
+Route::get('/services',[ServiceController:: class, 'index' ])->name('services');
+Route::get('/cars',[CarController:: class, 'index' ])->name('cars');
+Route::get('/contact',[ContactController:: class, 'index' ])->name('contact');
+Route::get('/order',[DriverController:: class, 'index' ])->name('drivers');
 
-Route::get('/',[App\Http\Controllers\Frontend\HomepageController:: class, 'index' ])->name('homepage');
-Route::get('/services',[App\Http\Controllers\Frontend\ServiceController:: class, 'index' ])->name('services');
-Route::get('/cars',[App\Http\Controllers\Frontend\CarController:: class, 'index' ])->name('cars');
-Route::get('/contact',[App\Http\Controllers\Frontend\ContactController:: class, 'index' ])->name('contact');
-Route::get('/order',[App\Http\Controllers\Frontend\DriverController:: class, 'index' ])->name('drivers');
-// Route::get('/search-cars', [App\Http\Controllers\Frontend\CarController::class, 'search'])->name('search.cars');
-// Route::get('/', function () {
-//     return view('frontend.homepage');
+
+Route::get('/riwayat', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('riwayat');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
+
+require __DIR__.'/auth.php';

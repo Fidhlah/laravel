@@ -18,8 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_driver')->nullable();
             $table->date('start_date');
             $table->date('end_date');
-            $table->time('pickup_time')->nullable();
-            $table->ENUM('payment_stat',['Pending DP', 'Paid DP', 'Full Paid', 'Cancelled', 'Done']);
+            $table->time('pickup_time');
+            $table->integer('total');
+            $table->integer('total_penalty')->default(0)->nullable();
+            $table->ENUM('booking_stat',['Pending Payment','Paid', 'Ongoing', 'Done']);
             $table->timestamps();
 
             // foreign key

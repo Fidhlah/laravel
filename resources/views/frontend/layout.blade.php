@@ -90,7 +90,11 @@
 
             <div class="col-3 ">
               <div class="site-logo">
-                <a href="{{ route('homepage') }}">CarRent</a>
+                @if(Auth::check() && Auth::user()->role == 'admin')
+                    <a href="{{ route('homepage') }}">Car Rent Admin</a>
+                @else
+                    <a href="{{ route('homepage') }}">CarRent</a>
+                @endif
               </div>
             </div>
 
@@ -109,6 +113,29 @@
                   <!-- <li class="{{ Request::routeIs('about') ? 'active' : '' }}"><a href="about.html" class="nav-link">About</a></li> -->
                   <!-- <li class="{{ Request::routeIs('blog') ? 'active' : '' }}"><a href="blog.html" class="nav-link">Blog</a></li> -->
                   <li class="{{ Request::routeIs('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+                  @if (Route::has('login'))
+                    @auth
+                        @if(Auth::user()->role == 'admin')
+                            <li class="">
+                              <a href="{{ url('/admin') }}" class="nav-link">Admin Page</a>
+                            </li>
+                        @else
+                            <li class="">
+                              <a href="{{route('riwayat')}}" class="nav-link">{{ Auth::user()->name }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="">
+                          <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                        </li>
+
+                        @if (Route::has('register'))
+                        <li class="">
+                          <a href="{{ route('register') }}" class="nav-link">Register</a>
+                        </li>
+                        @endif
+                    @endauth
+            @endif
                 </ul>
               </nav>
             </div>

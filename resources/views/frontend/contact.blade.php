@@ -19,7 +19,7 @@
       <div class="container">
         <div class="row justify-content-center text-center">
         <div class="col-7 text-center mb-5">
-          <h2>Contact Us Or Use This Form To Rent A Car</h2>
+          <h2>Contact Us</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius earum voluptates sed!</p>
         </div>
       </div>
