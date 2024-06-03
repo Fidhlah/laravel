@@ -31,7 +31,7 @@ class CarResource extends Resource
                 Forms\Components\FileUpload::make('thumbnail')
                     ->required()
                     ->columnSpanFull()
-                    ->directory('cars_images')
+                    ->directory('/cars_images')
                     ->preserveFilenames()
                     ->getUploadedFileNameForStorageUsing(function (\Livewire\Features\SupportFileUploads\TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);

@@ -113,6 +113,8 @@
                   <!-- <li class="{{ Request::routeIs('about') ? 'active' : '' }}"><a href="about.html" class="nav-link">About</a></li> -->
                   <!-- <li class="{{ Request::routeIs('blog') ? 'active' : '' }}"><a href="blog.html" class="nav-link">Blog</a></li> -->
                   <li class="{{ Request::routeIs('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+                  
+                  
                   @if (Route::has('login'))
                     @auth
                         @if(Auth::user()->role == 'admin')
