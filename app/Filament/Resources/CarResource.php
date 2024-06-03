@@ -70,6 +70,8 @@ class CarResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('thumbnail'),

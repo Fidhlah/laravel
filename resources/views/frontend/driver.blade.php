@@ -18,7 +18,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-              <form action="" method="GET" class="trip-form">
+              <form action="{{ route('cars') }}" method="GET" class="trip-form">
                 <div class="row align-items-center mb-4">
                   <div class="col-md-6">
                     <h3 class="m-0">Form Pemesanan</h3>
@@ -33,20 +33,21 @@
                     </div>
                 </div>
 
+                
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <label for="cf-3">Tanggal Mulai</label>
-                    <input type="text" id="cf-3" placeholder="Kapan perjalanan dimulai" class="form-control datepicker px-3" required>
+                    <label for="start_date">Tanggal Mulai</label>
+                    <input type="text"  id="start_date" placeholder="Kapan perjalanan dimulai" class="form-control datepicker px-3" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="cf-4">Tanggal Selesai</label>
-                    <input type="text" id="cf-4" placeholder="Kapan perjalanan berakhir" class="form-control datepicker px-3" required>
+                    <label for="end_date">Tanggal Selesai</label>
+                    <input type="text" id="end_date" placeholder="Kapan perjalanan berakhir" class="form-control datepicker px-3" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <label for="cf-3">Jam Diambil</label>
-                    <input type="time" id="cf-3" placeholder="Jam berapa mobil diambil" class="form-control timepicker px-3" required>
+                    <label for="cf-5">Jam Diambil</label>
+                    <input type="time" id="cf-5" placeholder="Jam berapa mobil diambil" class="form-control timepicker px-3" required>
                   </div>
                   <span></span>
                   <div class="button-box col-md-6">

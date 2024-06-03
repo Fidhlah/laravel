@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
@@ -13,20 +14,28 @@ class CarController extends Controller
         return view('frontend.car', compact('cars'));
     }
 
-    // public function search(Request $request) {
-    //     $startDate = $request->input('start_date');
-    //     $endDate = $request->input('end_date');
-    //     $pickupTime = $request->input('pickup_time');
-    //     $withDriver = $request->input('with_driver'); // Ambil informasi driver
-    
-    //     // Logika pencarian mobil yang tersedia berdasarkan tanggal dan waktu
-    //     $availableCars = Car::whereDoesntHave('reservations', function($query) use ($startDate, $endDate) {
-    //         $query->whereBetween('start_date', [$startDate, $endDate])
-    //               ->orWhereBetween('end_date', [$startDate, $endDate]);
-    //     })->get();
-    
-    //     return view('frontend.cars', compact('availableCars', 'startDate', 'endDate', 'pickupTime'));
-    // }
+    public function available(Request $request){
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Query untuk mencari mobil yang tersedia berdasarkan tanggal
+        $availableCars = Car::whereNotExists(function ($query) use ($startDate, $endDate) {
+            $query->select(DB::raw(1))
+                ->from('orders')
+                ->where('cars.id', '=', DB::raw('orders.id_car'))
+                ->where(function ($query) use ($startDate, $endDate) {
+                    $query->whereBetween('start_date', [$startDate, $endDate])
+                        ->orWhereBetween('end_date', [$startDate, $endDate])
+                        ->orWhere(function ($query) use ($startDate, $endDate) {
+                            $query->where('start_date', '<', $startDate)
+                                ->where('end_date', '>', $endDate);
+                        });
+                });
+        })->get();
+
+        return view('frontend.car', compact('cars'));
+    }
+
     
     // app/Http/Controllers/CarController.php
 

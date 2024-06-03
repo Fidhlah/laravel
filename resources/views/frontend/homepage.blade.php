@@ -133,7 +133,7 @@
                         </li> -->
                     </ul>
                     <div class="d-flex action">
-                        <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                        <a href="{{route('booking')}}" class="btn btn-primary">Rent Now</a>
                     </div>
                   </div>
             </div>

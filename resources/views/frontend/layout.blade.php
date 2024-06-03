@@ -65,6 +65,8 @@
 }
     </style>
 
+
+
   </head>
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -109,7 +111,7 @@
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
                   <li class="{{ Request::routeIs('homepage') ? 'active' : '' }}"><a href="{{ route('homepage') }}" class="nav-link">Home</a></li>
                   <li class="{{ Request::routeIs('cars') ? 'active' : '' }}"><a href="{{ route('cars') }}" class="nav-link">Cars</a></li>
-                  <li class="{{ Request::routeIs('drivers') ? 'active' : '' }}"><a href="{{ route('drivers') }}" class="nav-link">Drivers</a></li>
+                  <li class="{{ Request::routeIs('booking') ? 'active' : '' }}"><a href="{{ route('booking') }}" class="nav-link">Booking</a></li>
                   <!-- <li class="{{ Request::routeIs('about') ? 'active' : '' }}"><a href="about.html" class="nav-link">About</a></li> -->
                   <!-- <li class="{{ Request::routeIs('blog') ? 'active' : '' }}"><a href="blog.html" class="nav-link">Blog</a></li> -->
                   <li class="{{ Request::routeIs('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
