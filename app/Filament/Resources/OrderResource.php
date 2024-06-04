@@ -26,9 +26,13 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                // Forms\Components\TextInput::make('id_customer')
-                //     ->required()
-                //     ->numeric(),
+                Forms\Components\DatePicker::make('start_date')
+                    ->required(),
+                Forms\Components\DatePicker::make('end_date')
+                    ->required(),
+                Forms\Components\TextInput::make('id_customer')
+                    ->required()
+                    ->numeric(),
                 Select::make('id_car')
                     ->required()
                     ->options(Car::pluck('nama', 'id')->toArray()) // Mengambil nama mobil dari model Car
@@ -36,10 +40,6 @@ class OrderResource extends Resource
                     ->label('Nama Mobil'), // Menambahkan label untuk input
                 Forms\Components\TextInput::make('id_driver')
                     ->numeric(),
-                Forms\Components\DatePicker::make('start_date')
-                    ->required(),
-                Forms\Components\DatePicker::make('end_date')
-                    ->required(),
                 Forms\Components\TimePicker::make('pickup_time')
                 ->required(),
                 Forms\Components\TextInput::make('total')
@@ -57,14 +57,14 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id_customer')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Nama Customer') // Menambahkan label untuk kolom
                     ->sortable(),
-                Tables\Columns\TextColumn::make('id_car')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('car.nama') // Mengubah 'id_car' menjadi 'car.nama'
+                    ->label('Nama Mobil') // Menambahkan label untuk kolom
                     ->sortable(),
-                Tables\Columns\TextColumn::make('id_driver')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('driver.nama')
+                    ->label('Nama Driver') // Menambahkan label untuk kolom
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_date')
                     ->date()
@@ -72,9 +72,9 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('end_date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('pickup_time')
-                    ->format('H:i') // Format waktu tanpa tanggal (jam:menit)
-                    ->searchable(), // Membuat kolom ini dapat dicari
+                Tables\Columns\TextColumn::make('pickup_time'),
+                    // ->format('H:i') // Format waktu tanpa tanggal (jam:menit)
+                    // ->searchable(), // Membuat kolom ini dapat dicari
                 Tables\Columns\TextColumn::make('total')
                     ->numeric()
                     ->sortable(),

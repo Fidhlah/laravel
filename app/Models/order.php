@@ -15,4 +15,12 @@ class order extends Model
 {
     return $this->belongsTo(Car::class, 'id_car', 'id');
 }
+    public function user()
+{
+    return $this->belongsTo(User::class, 'id_customer', 'id');
+}
+    public function driver()
+{
+    return $this->belongsTo(Driver::class, 'id_driver', 'id');
+}
 }

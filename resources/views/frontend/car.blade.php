@@ -1,13 +1,14 @@
 @extends('frontend.layout')
 
 @section('content')
+
 <div class="ftco-blocks-cover-1">
-      <div class="ftco-cover-1 overlay innerpage" style="background-image: url('frontend/images/hero_2.jpg')">
+      <div class="ftco-cover-1 overlay innerpage" style="background-image: url('/frontend/images/hero_2.jpg')">
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
-              <h1>Our For Rent Cars</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <h1>Daftar Mobil Kami</h1>
+              <p>Koleksi pilihan kami hadir untuk melengkapi setiap langkah menuju impian Anda.</p>
             </div>
           </div>
         </div>
@@ -24,20 +25,20 @@
             <div class="item-1-contents">
                 <div class="text-center">
                     <h3><a href="#">{{ $car->nama }}</a></h3>
-                    <div class="rent-price"><span>Rp {{ number_format($car->harga, 0, ',', '.') }}/</span>day</div>
+                    <div class="rent-price"><span>Rp {{ number_format($car->harga, 0, ',', '.') }}/</span>hari</div>
                 </div>
                 <ul class="specs">
                     <li>
-                        <span>Seats</span>
+                        <span>Kursi</span>
                         <span class="spec">{{ $car->seat }}</span>
                     </li>
                     <li>
-                        <span>Transmission</span>
+                        <span>Transmisi</span>
                         <span class="spec">{{ $car->transmisi }}</span>
                     </li>
                 </ul>
                 <div class="d-flex action">
-                    <a href="{{route('booking')}}" class="btn btn-primary">Rent Now</a>
+                    <a href="{{route('booking')}}" class="btn btn-primary">Pesan Sekarang</a>
                 </div>
             </div>
         </div>
@@ -65,29 +66,7 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius earum voluptates sed!</p>
         </div>
       </div>
-      <div class="how-it-works d-flex">
-        <div class="step">
-          <span class="number"><span>01</span></span>
-          <span class="caption">Time &amp; Place</span>
-        </div>
-        <div class="step">
-          <span class="number"><span>02</span></span>
-          <span class="caption">Car</span>
-        </div>
-        <div class="step">
-          <span class="number"><span>03</span></span>
-          <span class="caption">Details</span>
-        </div>
-        <div class="step">
-          <span class="number"><span>04</span></span>
-          <span class="caption">Checkout</span>
-        </div>
-        <div class="step">
-          <span class="number"><span>05</span></span>
-          <span class="caption">Done</span>
-        </div>
-
-      </div>
+      
     </div>
 
 @endsection

@@ -2,26 +2,26 @@
 <html lang="en">
 
   <head>
-    <title>M. Hafidh F &mdash; Car Rent</title>
+    <title>M. Hafidh F &mdash; Rental Mobil</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=DM+Sans:300,400,700&display=swap" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css')}}">
 
-    <link rel="stylesheet" href="frontend/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="{{asset('frontend/fonts/icomoon/style.css')}}">
 
-    <link rel="stylesheet" href="frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="frontend/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="frontend/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="frontend/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="frontend/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="frontend/fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="frontend/css/aos.css">
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/jquery.fancybox.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/fonts/flaticon/font/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/aos.css')}}">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="frontend/css/style.css">
+    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
 
     <style>
       body {
@@ -93,9 +93,9 @@
             <div class="col-3 ">
               <div class="site-logo">
                 @if(Auth::check() && Auth::user()->role == 'admin')
-                    <a href="{{ route('homepage') }}">Car Rent Admin</a>
+                    <a href="{{ route('homepage') }}">LuxeDrive Admin</a>
                 @else
-                    <a href="{{ route('homepage') }}">CarRent</a>
+                    <a href="{{ route('homepage') }}">LuxeDrive</a>
                 @endif
               </div>
             </div>
@@ -223,18 +223,18 @@
 
     
 
-    <script src="frontend/js/jquery-3.3.1.min.js"></script>
-    <script src="frontend/js/popper.min.js"></script>
-    <script src="frontend/js/bootstrap.min.js"></script>
-    <script src="frontend/js/owl.carousel.min.js"></script>
-    <script src="frontend/js/jquery.sticky.js"></script>
-    <script src="frontend/js/jquery.waypoints.min.js"></script>
-    <script src="frontend/js/jquery.animateNumber.min.js"></script>
-    <script src="frontend/js/jquery.fancybox.min.js"></script>
-    <script src="frontend/js/jquery.easing.1.3.js"></script>
-    <script src="frontend/js/bootstrap-datepicker.min.js"></script>
-    <script src="frontend/js/aos.js"></script>
-    <script src="frontend/js/main.js"></script>
+    <script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('frontend/js/popper.min.js')}}"></script>
+    <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.sticky.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.waypoints.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.animateNumber.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.fancybox.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.easing.1.3.js')}}"></script>
+    <script src="{{asset('frontend/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('frontend/js/aos.js')}}"></script>
+    <script src="{{asset('frontend/js/main.js')}}"></script>
 
   </body>
 

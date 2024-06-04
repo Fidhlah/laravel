@@ -12,6 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('homepage')" :active="request()->routeIs('dashboard')">
+                        {{ __('Kembali ke website') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('riwayat')" :active="request()->routeIs('dashboard')">
                         {{ __('Riwayat') }}
                     </x-nav-link>

@@ -6,8 +6,8 @@
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
-              <h1>Pemesanan</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <h1>Halaman Pemesanan</h1>
+              <p>Koleksi pilihan kami hadir untuk melengkapi setiap langkah menuju impian Anda.</p>
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-              <form action="{{ route('cars') }}" method="GET" class="trip-form">
+              <form action="{{ route('cars.available') }}" method="GET" class="trip-form">
                 <div class="row align-items-center mb-4">
                   <div class="col-md-6">
                     <h3 class="m-0">Form Pemesanan</h3>
@@ -37,17 +37,17 @@
                 <div class="row">
                   <div class="form-group col-md-6">
                     <label for="start_date">Tanggal Mulai</label>
-                    <input type="text"  id="start_date" placeholder="Kapan perjalanan dimulai" class="form-control datepicker px-3" required>
+                    <input type="date"  id="start_date" placeholder="Kapan perjalanan dimulai" class="form-control px-3" required>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="end_date">Tanggal Selesai</label>
-                    <input type="text" id="end_date" placeholder="Kapan perjalanan berakhir" class="form-control datepicker px-3" required>
+                    <input type="date" id="end_date" placeholder="Kapan perjalanan berakhir" class="form-control px-3" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <label for="cf-5">Jam Diambil</label>
-                    <input type="time" id="cf-5" placeholder="Jam berapa mobil diambil" class="form-control timepicker px-3" required>
+                    <label for="pickup_time">pickup_time Diambil</label>
+                    <input type="time" id="jam" placeholder="Jam berapa mobil diambil" class="form-control timepicker px-3" required>
                   </div>
                   <span></span>
                   <div class="button-box col-md-6">
