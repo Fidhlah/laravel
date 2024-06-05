@@ -16,9 +16,14 @@ class CarController extends Controller
 
     public function available(Request $request)
 {
-    // Parameter tanggal dibiarkan statis sesuai dengan format 'tahun-bulan-tanggal'
-    $startDateFormatted = '2024-06-04';
-    $endDateFormatted = '2024-06-06';
+    // Get dates from the request, validating if needed
+    $startDate = $request->input('start_date');
+    $endDate = $request->input('end_date');
+    
+    // Convert dates to the 'Y-m-d' format
+    $startDateFormatted = date('Y-m-d', strtotime($startDate));
+    $endDateFormatted = date('Y-m-d', strtotime($endDate));
+
 
     // Query untuk mencari mobil yang tersedia berdasarkan tanggal
     $availableCars = Car::whereNotExists(function ($query) use ($startDateFormatted, $endDateFormatted) {
@@ -34,6 +39,11 @@ class CarController extends Controller
                     });
             });
     })->paginate(6); // Ubah angka 6 sesuai dengan jumlah data yang ingin ditampilkan per halaman
+
+
+    $request->session()->put('startDate', $startDate);
+    $request->session()->put('endDate', $endDate);
+
 
     return view('frontend.car', ['cars' => $availableCars]);
 }
