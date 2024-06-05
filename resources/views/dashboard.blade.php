@@ -14,12 +14,6 @@
                             <h3 class="mb-4">Riwayat Booking</h3>
                             @foreach ($bookingHistory as $booking)
                                 <div class="card mb-3">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <span><strong>ID Pemesanan:</strong> {{ $booking->id }}</span>
-                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#bookingDetail{{ $booking->id }}" aria-expanded="false" aria-controls="bookingDetail{{ $booking->id }}">
-                                            Detail Pesanan
-                                        </button>
-                                    </div>
                                     <div class="collapse" id="bookingDetail{{ $booking->id }}">
                                         <div class="card-body">
                                             <p><strong>Tanggal Pemesanan:</strong> {{ $booking->created_at->format('d-m-Y') }}</p>

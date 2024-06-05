@@ -69,7 +69,7 @@ class DriverController extends Controller
     
                 $order = Order::create($orderData);
     
-                return redirect()->route('riwayat')->with('message', 'Pesanan berhasil dibuat!');
+                return redirect()->route('booking.history')->with('message', 'Pesanan berhasil dibuat!');
             }
         }
     

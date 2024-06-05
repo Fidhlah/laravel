@@ -14,39 +14,37 @@ class CarController extends Controller
         return view('frontend.car', compact('cars'));
     }
 
-    public function available(Request $request)
-{
-    // Get dates from the request, validating if needed
-    $startDate = $request->input('start_date');
-    $endDate = $request->input('end_date');
-    
-    // Convert dates to the 'Y-m-d' format
-    $startDateFormatted = date('Y-m-d', strtotime($startDate));
-    $endDateFormatted = date('Y-m-d', strtotime($endDate));
+    public function available(Request $request){
+        // Get dates from the request, validating if needed
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Convert dates to the 'Y-m-d' format
+        $startDateFormatted = date('Y-m-d', strtotime($startDate));
+        $endDateFormatted = date('Y-m-d', strtotime($endDate));
+
+        // Query untuk mencari mobil yang tersedia berdasarkan tanggal
+        $availableCars = Car::whereNotExists(function ($query) use ($startDateFormatted, $endDateFormatted) {
+            $query->select(DB::raw(1))
+                ->from('order')
+                ->whereColumn('cars.id', 'order.id_car')
+                ->where(function ($query) use ($startDateFormatted, $endDateFormatted) {
+                    $query->whereBetween('start_date', [$startDateFormatted, $endDateFormatted])
+                        ->orWhereBetween('end_date', [$startDateFormatted, $endDateFormatted])
+                        ->orWhere(function ($query) use ($startDateFormatted, $endDateFormatted) {
+                            $query->where('start_date', '<', $startDateFormatted)
+                                ->where('end_date', '>', $endDateFormatted);
+                        });
+                });
+        })->paginate(6); // Ubah angka 6 sesuai dengan jumlah data yang ingin ditampilkan per halaman
+
+        $request->session()->put('startDate', $startDate);
+        $request->session()->put('endDate', $endDate);
+
+        return view('frontend.car', ['cars' => $availableCars]);
+    }
 
 
-    // Query untuk mencari mobil yang tersedia berdasarkan tanggal
-    $availableCars = Car::whereNotExists(function ($query) use ($startDateFormatted, $endDateFormatted) {
-        $query->select(DB::raw(1))
-            ->from('order')
-            ->whereColumn('cars.id', 'order.id_car')
-            ->where(function ($query) use ($startDateFormatted, $endDateFormatted) {
-                $query->whereBetween('start_date', [$startDateFormatted, $endDateFormatted])
-                    ->orWhereBetween('end_date', [$startDateFormatted, $endDateFormatted])
-                    ->orWhere(function ($query) use ($startDateFormatted, $endDateFormatted) {
-                        $query->where('start_date', '<', $startDateFormatted)
-                            ->where('end_date', '>', $endDateFormatted);
-                    });
-            });
-    })->paginate(6); // Ubah angka 6 sesuai dengan jumlah data yang ingin ditampilkan per halaman
-
-
-    $request->session()->put('startDate', $startDate);
-    $request->session()->put('endDate', $endDate);
-
-
-    return view('frontend.car', ['cars' => $availableCars]);
-}
 
 
 

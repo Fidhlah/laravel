@@ -125,7 +125,7 @@
                             </li>
                         @else
                             <li class="">
-                              <a href="{{route('riwayat')}}" class="nav-link">{{ Auth::user()->name }}</a>
+                              <a href="{{url('/riwayat')}}" class="nav-link">{{ Auth::user()->name }}</a>
                             </li>
                         @endif
                     @else

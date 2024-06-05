@@ -32,7 +32,7 @@ Route::get('/cars', [CarController::class, 'index'])->name('cars');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/booking', [DriverController::class, 'index'])->name('booking');
 
-Route::post('/cars/available', [CarController::class, 'available'])->name('cars.available');
+Route::get('/cars/available', [CarController::class, 'available'])->name('cars.available');
 
 Route::get('/booking/{car_id}', [DriverController::class, 'booking'])
     ->name('booking.after')

@@ -52,7 +52,11 @@
             </div>
         @endforelse
             <div class="col-12">
-                {{$cars->links('pagination::bootstrap-5')}}
+                {{-- {{$cars->links('pagination::bootstrap-5')}} --}}
+                <form action="{{ route('cars.available') }}" method="GET">
+                    @csrf
+                    {{ $cars->links('pagination::bootstrap-5') }}
+                </form>                
             </div>
         </div>
     </div>

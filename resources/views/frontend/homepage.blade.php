@@ -13,39 +13,111 @@
 
     <div class="site-section pt-0 pb-0 bg-light">
       <div class="container">
-        <div class="row">
-          <div class="col-12">
-
-              <form class="trip-form">
-                <div class="row align-items-center mb-4">
-                  <div class="col-md-6">
-                    <h3 class="m-0">Begin your trip here</h3>
-                  </div>
-                  <div class="col-md-6 text-md-right">
-                    <span class="text-primary">0</span> <span>cars available</span></span>
-                    {{-- <span class="text-primary">{{$availableCarsCount}}</span> <span>cars available</span></span> --}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="form-group col-md-6">
-                    <label for="cf-3">Journey date</label>
-                    <input type="text" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="cf-4">Return date</label>
-                    <input type="text" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12 text-center">
-                    <input type="submit" value="Submit" class="btn btn-primary">
-                  </div>
-                </div>
-              </form>
-            </div>
-        </div>
+          <div class="row">
+              <div class="col-12">
+                  <form action="{{ isset($car) ? route('orders.store') : route('cars.available') }}" method="POST" class="trip-form" id="order-form">
+                      @csrf
+                      <div class="row">
+                        <div class="col-lg-12 text-center">
+                          <h3>Mulai Perjalananmu</h3>
+                        </div>
+                      </div>
+  
+                      <div class="row">
+                          <div class="form-group col-md-6">
+                              <label for="start_date">Tanggal Mulai</label>
+                              <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date', $startDate ?? '') }}" required>
+                          </div>
+                          <div class="form-group col-md-6">
+                              <label for="end_date">Tanggal Selesai</label>
+                              <input type="date" name="end_date" id="end_date" class="form-control" value="{{ old('end_date', $endDate ?? '') }}" required>
+                          </div>
+                      </div>
+  
+                      @if(isset($car)) 
+                          <input type="hidden" name="car_id" value="{{ $car->id }}">
+                          <input type="hidden" name="car_price" id="car_price" value="{{ $car->harga }}">
+                          <input type="hidden" name="driver_option" id="driver_option" value="tanpa_driver">
+  
+                          <div class="row mt-4">
+                              <div class="col-12">
+                                  <h4>Mobil yang Dipilih:</h4>
+                                  <div class="selected-car">
+                                      <img src="{{ Storage::url($car->thumbnail) }}" alt="Image" class="img-fluid">
+                                      <h3>{{ $car->nama }}</h3>
+                                      <p>Harga: <span id="car_harga">{{ $car->harga }}</span> per hari</p>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="row mt-4">
+                              <div class="col-12">
+                                  <h4>Total Harga:</h4>
+                                  <p id="total_harga">Rp. 0</p>
+                              </div>
+                          </div>
+  
+                      @else
+                          <div class="row">
+                              <div class="col-lg-12 text-center">
+                                  <button type="submit" class="btn btn-primary" name="action" value="search_car">
+                                      <i class="fas fa-search"></i> Cari Mobil
+                                  </button>
+                              </div>
+                          </div>
+                      @endif
+  
+                      @if(isset($car))
+                          <div class="row mt-4">
+                              <div class="col-12">
+                                  <div class="button-box">
+                                      <div id="btn"></div>
+                                      <button type="button" class="toggle-btn" onclick="leftClick()">Tanpa Driver</button>
+                                      <button type="button" class="toggle-btn" onclick="rightClick()">Dengan Driver</button>
+                                  </div>
+                                  <div class="row justify-content-center mt-4">
+                                      <div class="col-lg-3 text-center">
+                                          <div id="pickup_time_container" style="display:none;"> 
+                                              <label for="pickup_time">Jam Diambil:</label>
+                                              <input type="time" id="pickup_time" name="pickup_time" placeholder="Jam berapa mobil diambil" class="form-control timepicker px-3">
+                                          </div>
+                                      </div>
+                                  </div>
+  
+                                  <div class="row mt-4">
+                                      <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <th scope="col">Syarat dan Ketentuan Tanpa Driver</th>
+                                                  <th scope="col">Syarat dan Ketentuan Dengan Driver</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              {{-- Isi tabel syarat dan ketentuan --}}
+                                          </tbody>
+                                      </table>
+                                  </div>
+                                  @auth
+                                      @if (Auth::user()->role == 'user')
+                                          <div class="row">
+                                              <div class="col-lg-12 text-center mt-4">
+                                                  <button type="submit" class="btn btn-success btn-block" name="action" value="submit_order">Pesan Sekarang</button>
+                                              </div>
+                                          </div>
+                                      @else
+                                          <div class="alert alert-warning">Hanya pengguna dengan role 'user' yang dapat memesan.</div>
+                                      @endif
+                                  @else
+                                      <a href="{{ route('login') }}" class="btn btn-primary btn-block mt-4">Login untuk Memesan</a>
+                                  @endauth
+                              </div>
+                          </div>
+                      @endif
+                  </form> 
+              </div>
+          </div>
       </div>
-    </div>
+  </div>
 
     <div class="site-section bg-light">
       <div class="container">
