@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 // use Filament\Filament;
 use Filament\Facades\Filament;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\RedirectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -25,46 +26,28 @@ use Illuminate\Support\Facades\Redirect;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',[HomepageController:: class, 'index' ])->name('homepage');
-Route::get('/services',[ServiceController:: class, 'index' ])->name('services');
-Route::get('/cars',[CarController:: class, 'index' ])->name('cars');
-Route::get('/contact',[ContactController:: class, 'index' ])->name('contact');
-Route::get('/booking',[DriverController:: class, 'index' ])->name('booking');
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::get('/services', [ServiceController::class, 'index'])->name('services');
+Route::get('/cars', [CarController::class, 'index'])->name('cars');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/booking', [DriverController::class, 'index'])->name('booking');
 
 Route::post('/cars/available', [CarController::class, 'available'])->name('cars.available');
-// Route::get('/booking/{car_id}', [DriverController::class, 'index'])->name('booking');
-
 
 Route::get('/booking/{car_id}', [DriverController::class, 'booking'])
-->name('booking.after')
-->where('car_id', '[0-9]+'); // Optionally validate car_id as numeric
+    ->name('booking.after')
+    ->where('car_id', '[0-9]+');
 
-Route::get('/riwayat', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('riwayat');
+// Route::get('/riwayat', [DashboardController::class, 'index'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('riwayat');
 
-// Route::middleware('auth')->group(function () {
-    //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // });
-    
-    
-    Route::middleware(['auth','UserMiddleware'])->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-        Route::post('/orders', [DriverController::class, 'store'])->name('orders.store')->middleware(['auth', 'UserMiddleware']);
-    });
-
-// Route::middleware(['auth','AdminMiddleware'])->group(function () {
-//     Route::get('/admin',[RedirectController:: class, 'index' ])->name('redirect');
-    
-// });
-
-
-
-
-
+Route::middleware(['auth', 'UserMiddleware'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/orders', [DriverController::class, 'store'])->name('orders.store');
+    Route::get('/riwayat', [DashboardController::class, 'index'])->name('booking.history');
+});
 
 require __DIR__.'/auth.php';

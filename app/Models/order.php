@@ -12,15 +12,15 @@ class order extends Model
     protected $guarded = ['id'];
 
     public function car()
-{
-    return $this->belongsTo(Car::class, 'id_car', 'id');
-}
+    {
+         return $this->belongsTo(Car::class, 'id_car', 'id');
+    }
     public function user()
-{
-    return $this->belongsTo(User::class, 'id_customer', 'id');
-}
+    {
+        return $this->belongsTo(User::class, 'id_customer', 'id');
+    }
     public function driver()
-{
-    return $this->belongsTo(Driver::class, 'id_driver', 'id');
-}
+    {
+        return $this->belongsTo(Driver::class, 'id_driver', 'id');
+    }
 }
